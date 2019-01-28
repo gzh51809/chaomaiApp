@@ -1,0 +1,26 @@
+.Home{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+.am-tabs-tab-bar-wrap {
+    background: -webkit-linear-gradient(left, #fe419e, #ff2a62);
+}
+.am-tabs-default-bar-top .am-tabs-default-bar-nextpage,
+.am-tabs-default-bar-top .am-tabs-default-bar-prevpage {
+    height: 0;
+}
+.am-tabs-default-bar-tab{
+    opacity: 0.6;
+}
+.am-tabs-default-bar-tab-active{
+    opacity: 1;
+}
+.am-navbar{
+    height: 44px;
+    background: -webkit-linear-gradient(left, #fe419e, #ff2a62);
+}
+
+.am-navbar-title{
+    font-size: 20px;
+}
