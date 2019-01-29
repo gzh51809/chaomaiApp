@@ -123,5 +123,8 @@
         }
       ]
     ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^4.3.1"
   }
 }

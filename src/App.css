@@ -41,4 +41,8 @@ html, body, div, span, applet, object, iframe,
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	.App{
+		height: 100%;
+		width:100%;
+	}
 	
