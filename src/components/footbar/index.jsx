@@ -30,8 +30,6 @@ class Footbar extends Component{
         
         this.setState({
             selectedTab:match.path
-        },()=>{
-                console.log(this.state)
         })
     }
     render(){

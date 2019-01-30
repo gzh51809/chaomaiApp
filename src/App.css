@@ -41,6 +41,16 @@ html, body, div, span, applet, object, iframe,
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	html,body{
+		height: 100%;
+	}
+	body{
+		font-size: 14px;
+		background-color: #f4f4f4;
+	}
+	#root{
+		height: 100%;
+	}
 	.App{
 		height: 100%;
 		width:100%;
