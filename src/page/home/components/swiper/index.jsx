@@ -1,32 +1,45 @@
-import React from 'react';
-import './style.scss'
+import React,{ Component } from 'react';
+import axios from 'axios';
+import './style.scss';
 
-function HomeSwiper(){
+class HomeSwiper extends Component{
+    state={
+        swiperData:[]
+    }
+    componentWillMount(){
+        //请求HomeSwiper数据
+        let formData = new FormData();
+        formData.append("type", "mobile_index");
+        formData.append("device", 'mobile'); 
+        axios.post('nav/Lists', formData)
+        .then(res=>{
+            let {data} =res.data;
+            this.setState({
+                swiperData:data
+            })
+        })
+        .catch(err=>console.log(err))
+    }
+    render(){
+        let { swiperData}=this.state;
         return (
             <div className='contain'>
                 <div className='page'>
-                    <div className='item'>
-                        <img src="http://buyshowimg.oss-cn-qingdao.aliyuncs.com/20180103%2F15d12f633086c6c315538a545f6cc6f5.png" alt=''/>
-                        <div className='name'>年货来了</div>
-                    </div>
-                    <div className='item'>
-                        <img src="" alt=''/>
-                        <div className='name'></div>
-                    </div>
-                    <div className='item'>
-                        <img src="" alt=''/>
-                        <div className='name'></div>
-                    </div>
-                    <div className='item'>
-                        <img src="" alt=''/>
-                        <div className='name'></div>
-                    </div>
-                    <div className='item'>
-                        <img src="" alt=''/>
-                        <div className='name'></div>
-                    </div>
-               </div>
+                    {
+                        swiperData.map(item=>{
+                            return (
+                                <div className='item' key={item.logo}>
+                                    <img src={item.logo} alt='' />
+                                    <div className='name'>{item.name}</div>
+                                </div>
+                            )
+                        })
+                    }
+                   
+                </div>
             </div>
         )
+    }
 }
+
 export default HomeSwiper;

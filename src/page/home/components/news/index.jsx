@@ -16,9 +16,7 @@ function HomeNews(){
                     autoplay
                     infinite
                 >
-                    <div className="v-item">carousel 1</div>
-                    <div className="v-item">carousel 2</div>
-                    <div className="v-item">carousel 3</div>
+                    <div className="v-item">超买电脑版的网址是多少？</div>
                 </Carousel>
             </div>
             

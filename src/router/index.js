@@ -10,6 +10,6 @@ export default (
         <Route path='/cart' component={Cart}/>
         <Route path='/user/share' component={UserShare}/>
         <Route path='/user/center' component={UserCenter}/>
-        <Redirect from={'/'} to={'/home'}/>
+        <Redirect from={'/'} to={'/home'} exact/>
     </Switch>
 )

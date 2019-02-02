@@ -1,19 +1,44 @@
 import React, { Component } from 'react';
+import { ActivityIndicator } from 'antd-mobile'
 import './style.scss';
 import axios from 'axios';
 class HomeListContent extends Component{
-
+    state={
+        listData:[],
+        loading:false
+    }
     componentWillMount(){
-        axios.post('/product/Lists')
+        this.setState({
+            loading:true
+        })
+        //通过父组件传回来的值进行判断
+        let {cid} =this.props;
+        let recommend=cid ? '1' : '4';
+
+        //生成formData数据结构进行请求
+        let formData = new FormData();
+        formData.append("page", "1");
+        formData.append("recommend", recommend); 
+        formData.append("cid", cid); 
+        formData.append("device", 'mobile'); 
+
+        //发送请求
+        axios.post('/product/Lists', formData)
         .then((res)=>{
-            console.log(res)
+            let {data} =res.data;
+            this.setState({
+                listData:data.data,
+                loading:false
+            })
         }).catch((err)=>{
             console.log(err)
         })
     }
     render(){
+        let { listData,loading } =this.state;
         return (
             <div className='listcontent'>
+                <ActivityIndicator toast text="正在加载" animating={loading}/>
                 <div className="section-title">
                     <span className="divider">
                         <span className="new-color">
@@ -24,81 +49,35 @@ class HomeListContent extends Component{
                 </div>
                 <div className="list-wrapper">
                     <div className="list-content">
-                        <div className="list-item">
-                            <div className="square-box">
-                                <img src="http://buyshowimg.oss-cn-qingdao.aliyuncs.com/20190125%2F1ebe3a0520b032509e0827367d71eaac.jpg?x-oss-process=image/resize,m_lfit,w_400,h_400" alt=""/>
-                            </div>
-                            <div className='detail-content section-content'>
-                                <div className='row-mb12'>2019年春联增福</div>
-                                <div className='text-small'>
-                                    <div className='price'>
-                                        <span>
-                                            <span className='theme-color'>
-                                                <span className='text-small'>￥</span>
-                                                <span className='text-big'>0.01</span>
-                                            </span>
-                                            <del className='tip'>
-                                                <span className='text-small'>￥</span>
-                                                0.01
+                    {
+                        listData.map(item=>(
+                            <div className="list-item" key={item.product_name}>
+                                <div className="square-box">
+                                    <img src={item.image_thumb} alt="" />
+                                </div>
+                                <div className='detail-content section-content'>
+                                    <div className='row-mb12'>{item.product_name}</div>
+                                    <div className='text-small'>
+                                        <div className='price'>
+                                            <span>
+                                                <span className='theme-color'>
+                                                    <span className='text-small'>￥</span>
+                                                    <span className='text-big'>{item.sell_price}</span>
+                                                </span>
+                                                <del className='tip'>
+                                                    <span className='text-small'>￥</span>
+                                                    {item.score}
                                             </del>
-                                        </span>
-                                    </div>
-                                    <div className='flex-between'>
-                                        <span>已售40件</span><span>进入店铺</span>
+                                            </span>
+                                        </div>
+                                        <div className='flex-between'>
+                                            <span>已售{item.sell_num}件</span><span>进入店铺</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="square-box">
-                                <img src="http://buyshowimg.oss-cn-qingdao.aliyuncs.com/20180928%2Fc8059658bb70a2f681f861353aeb4c2f.jpg?x-oss-process=image/resize,m_lfit,w_400,h_400" alt="" />
-                            </div>
-                            <div className='detail-content section-content'>
-                                <div className='row-mb12'>2019年春联增福</div>
-                                <div className='text-small'>
-                                    <div className='price'>
-                                        <span>
-                                            <span className='theme-color'>
-                                                <span className='text-small'>￥</span>
-                                                <span className='text-big'>0.01</span>
-                                            </span>
-                                            <del className='tip'>
-                                                <span className='text-small'>￥</span>
-                                                0.01
-                                            </del>
-                                        </span>
-                                    </div>
-                                    <div className='flex-between'>
-                                        <span>已售40件</span><span>进入店铺</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="square-box">
-                                <img src="http://buyshowimg.oss-cn-qingdao.aliyuncs.com/20180928%2Fc8059658bb70a2f681f861353aeb4c2f.jpg?x-oss-process=image/resize,m_lfit,w_400,h_400" alt="" />
-                            </div>
-                            <div className='detail-content section-content'>
-                                <div className='row-mb12'>2019年春联增福</div>
-                                <div className='text-small'>
-                                    <div className='price'>
-                                        <span>
-                                            <span className='theme-color'>
-                                                <span className='text-small'>￥</span>
-                                                <span className='text-big'>0.01</span>
-                                            </span>
-                                            <del className='tip'>
-                                                <span className='text-small'>￥</span>
-                                                0.01
-                                            </del>
-                                        </span>
-                                    </div>
-                                    <div className='flex-between'>
-                                        <span>已售40件</span><span>进入店铺</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        ))
+                    }
                     </div>
                 </div>
             </div>

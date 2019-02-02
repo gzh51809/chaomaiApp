@@ -43,6 +43,8 @@
                     padding-left: 3px;
                 }
                 .square-box{
+                    height: 158.5px;
+                    width:158.5px;
                     img{
                         display: block;
                         width: 100%;
@@ -59,6 +61,7 @@
                         margin-bottom: 12px;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
                     .text-small{
                         font-size: 12px;
