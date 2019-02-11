@@ -17,10 +17,11 @@ class Home extends Component{
     }
     componentWillMount(){
         //请求Tabs的数据
-        axios.post('category/Lists')
+        axios.post('basic/category/Lists')
         .then(res=>{
             let {data} =res.data;
-            data.unshift({ category_id: 0, category_name: "首页",})
+            data.unshift({ category_id: 0, category_name: "首页"})
+            
             this.setState({
                 tab:data.map(item=>{
                     return {
@@ -45,12 +46,16 @@ class Home extends Component{
             })
         }
     }
+    handleRouter(){
+        let {history} =this.props;
+        history.push('/product/category')
+    }
     render(){
         return(
             <div >
                 <NavBar
                     rightContent={[
-                        <Icon key="0" type="search" />,
+                        <Icon key="0" type="search" onClick={this.handleRouter.bind(this)}/>,
                     ]}
                 >首页</NavBar>
                 <Tabs

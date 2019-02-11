@@ -47,6 +47,8 @@ html, body, div, span, applet, object, iframe,
 	body{
 		font-size: 14px;
 		background-color: #f4f4f4;
+		line-height: 1.6;
+		font-family: -apple-system-font,Helvetica Neue,sans-serif;
 	}
 	#root{
 		height: 100%;

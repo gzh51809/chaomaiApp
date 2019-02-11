@@ -11,7 +11,7 @@ class HomeSwiper extends Component{
         let formData = new FormData();
         formData.append("type", "mobile_index");
         formData.append("device", 'mobile'); 
-        axios.post('nav/Lists', formData)
+        axios.post('basic/nav/Lists', formData)
         .then(res=>{
             let {data} =res.data;
             this.setState({

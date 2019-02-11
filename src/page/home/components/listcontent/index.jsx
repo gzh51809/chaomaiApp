@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { ActivityIndicator } from 'antd-mobile'
+import { ActivityIndicator } from 'antd-mobile';
+import { withRouter } from 'react-router-dom';
 import './style.scss';
 import axios from 'axios';
 class HomeListContent extends Component{
     state={
         listData:[],
         loading:false
+    }
+    handleToDetail(id, sell_type, user_id){
+        let {history}=this.props;
+        history.push({ pathname: `/product/detail/${id}`, state: { sell_type, user_id}});
     }
     componentWillMount(){
         this.setState({
@@ -23,7 +28,7 @@ class HomeListContent extends Component{
         formData.append("device", 'mobile'); 
 
         //发送请求
-        axios.post('/product/Lists', formData)
+        axios.post('basic/product/Lists', formData)
         .then((res)=>{
             let {data} =res.data;
             this.setState({
@@ -38,7 +43,7 @@ class HomeListContent extends Component{
         let { listData,loading } =this.state;
         return (
             <div className='listcontent'>
-                <ActivityIndicator toast text="正在加载" animating={loading}/>
+                <ActivityIndicator toast text="Loading" animating={loading}/>
                 <div className="section-title">
                     <span className="divider">
                         <span className="new-color">
@@ -51,7 +56,7 @@ class HomeListContent extends Component{
                     <div className="list-content">
                     {
                         listData.map(item=>(
-                            <div className="list-item" key={item.product_name}>
+                            <div className="list-item" key={item.product_name} onClick={this.handleToDetail.bind(this, item.product_id, item.sell_type, item.user_id)}>
                                 <div className="square-box">
                                     <img src={item.image_thumb} alt="" />
                                 </div>
@@ -85,4 +90,4 @@ class HomeListContent extends Component{
     }
 }
 
-export default HomeListContent;
+export default withRouter(HomeListContent);
