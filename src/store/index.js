@@ -5,6 +5,6 @@ import {
 
 import reducer from '../reducer';
 
-let store = createStore(reducer, composeWithDevTools()); //{cart,goods}
+const store = createStore(reducer, composeWithDevTools()); //{cart,goods}
 
 export default store;

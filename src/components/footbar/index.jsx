@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { TabBar } from 'antd-mobile';
 import { withRouter} from 'react-router-dom';
-import './style.css';
+import './style.scss';
 class Footbar extends Component{
     state={
         tab:[
