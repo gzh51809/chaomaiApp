@@ -27,7 +27,6 @@ class Footbar extends Component{
     }
     componentWillMount(){
         let {match} =this.props;
-        
         this.setState({
             selectedTab:match.path
         })

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import '@/statics/serarchbar/iconfont.css';
+import { add, changeQty, addSameCart } from '@/action/cartAction';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './style.scss';
-import { Carousel, ActivityIndicator } from 'antd-mobile';
+import { Carousel, ActivityIndicator, Toast } from 'antd-mobile';
 class Detail extends Component {
     state = {
         open: false,
@@ -13,6 +14,7 @@ class Detail extends Component {
         productInfo: [],
         productEvaSum: [],
         productEvaluation: [],
+        supplyInfo: [],
         desc: '',
         number: 1
     }
@@ -47,10 +49,24 @@ class Detail extends Component {
             return
         }
     }
-    handlAddCart(item){
-        let {cart}=this.props;
-        let currentGoods = cart.filter(goods => goods.id === item.goods_id);
-        
+    handlAddCart(item) {
+        let { goods } = this.props;
+        let currentGoods = goods.filter(goods => goods.id === item.id);
+        if (currentGoods.length > 0) {
+            let goods=currentGoods[0].product.filter(goods=>goods.id===item.product[0].id);
+            let {id,product}=item;
+            if(goods.length>0){
+                let num=product[0].qty+goods[0].qty;
+                this.props.changeQty(id,product[0].id,num)
+            }else{
+                this.props.addSameCart(id,item.product[0])
+            }
+        } else {
+            this.props.addToCart(item)
+        }
+        this.setState({
+            open: false
+        }, () => { Toast.success('已成功加入购物车', 1); })
     }
     componentWillMount() {
         let { params } = this.props.match;
@@ -67,7 +83,8 @@ class Detail extends Component {
                     photo: res.data.data.productInfo.image_list.split(','),
                     productInfo: res.data.data.productInfo,
                     productEvaSum: res.data.data.productEvaSum,
-                    productEvaluation: res.data.data.productEvaluation[0]
+                    productEvaluation: res.data.data.productEvaluation[0],
+                    supplyInfo: res.data.data.supplyInfo
                 })
             })
         let desc = new FormData();
@@ -82,8 +99,8 @@ class Detail extends Component {
             })
     }
     render() {
-        let { number, photo, loading, allData, productInfo, desc, productEvaSum, productEvaluation = [], open } = this.state;
-        let {}=this.props;
+        let { supplyInfo, number, photo, loading, allData, productInfo, desc, productEvaSum, productEvaluation = [], open } = this.state;
+
         let num = productEvaSum.ms_lev ? parseInt(productEvaSum.ms_lev) : '';
         return (
             <div className='app-content'>
@@ -293,7 +310,18 @@ class Detail extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="section-foot flex" onClick={this.handlAddCart.bind(this, { imgURL: productInfo.image_thumb, number, id: productInfo.category_id, name: productInfo.product_name, price: productInfo.sell_price})}>
+                            <div className="section-foot flex" onClick={this.handlAddCart.bind(this, 
+                                {   
+                                    bussiness: supplyInfo.name, 
+                                    id: supplyInfo.id,
+                                    product: [{ 
+                                        imgURL: productInfo.image_thumb, 
+                                        qty: number, 
+                                        id: productInfo.category_id, 
+                                        name: productInfo.product_name, 
+                                        price: productInfo.sell_price 
+                                    }] 
+                                })}>
                                 <div className="flex-item btn btn-cart">加入购物车</div>
                             </div>
                         </div>
@@ -304,10 +332,22 @@ class Detail extends Component {
     }
 }
 
-let mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
     return {
-        ...state
+        goods: state.cart.goodslist
     }
 }
-
-export default connect(mapStateToProps)(Detail);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart(goods) {
+            dispatch(add(goods))
+        },
+        changeQty(id,uid, qty) {
+            dispatch(changeQty(id,uid, qty))
+        },
+        addToSameCart(id,goods){
+            dispatch(addSameCart(id,goods))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

@@ -4,16 +4,19 @@
 //cartAction
 import {
     ADD_TO_CART,
+    ADD_TO_SAME_CART,
     REMOVE_CART,
     CLEAR_CART,
-    UPDATA_QTY
+    UPDATA_QTY,
+    CHANGE_OPEN,
+    DELETE_SAME
 } from '../action/cartAction'
 
 
 //初始化仓库
 const defaultState = {
     goodslist: [],
-    step: 0
+    open: false
 }
 
 //创建reducer
@@ -29,31 +32,65 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 goodslist: [...state.goodslist, payload]
             }
-
-        //删除商品
+            //增加同商店商品
+        case ADD_TO_SAME_CART:
+            return {
+                ...state,
+                goodslist: state.goodslist.map(item => {
+                    if (item.id === payload.id) {
+                        item.product.push(payload.goods)
+                    }
+                    return item;
+                })
+            }
+            //删除商品
         case REMOVE_CART:
             return {
                 ...state,
                 goodslist: state.goodslist.filter(item => item.id !== payload.id)
             }
 
-        //更新商品数量
+            //更新商品数量
         case UPDATA_QTY:
             return {
                 ...state,
                 goodslist: state.goodslist.map(item => {
                     if (item.id === payload.id) {
-                        item.qty = payload.qty;
+                        item.product.map(it => {
+                            if (it.id === payload.uid) {
+                                it.qty = payload.qty;
+                            }
+                            return it;
+                        })
                     }
                     return item;
                 })
             }
-        //清空购物车
+            //清空购物车
         case CLEAR_CART:
             return {
                 ...state,
                 goodslist: []
             }
+            //删除同店铺商品
+        case DELETE_SAME:
+            return {
+                ...state,
+                goodslist: state.goodslist.map(item => {
+                    if (item.id === payload.id) {
+                        item.product.filter(it => {
+                            return it.id !== payload.uid
+                        })
+                    }
+                    return item;
+                })
+            }
+        case CHANGE_OPEN:
+            return {
+                ...state,
+                open: !state.open
+            }
+
         default:
             return state;
     }

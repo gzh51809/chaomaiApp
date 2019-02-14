@@ -112,7 +112,6 @@ class Home extends Component{
                         
                         <HomeListContent cid={this.state.cid}/>
                     </div>
-                    
                 </Tabs>
                 <FootBar />
             </div>

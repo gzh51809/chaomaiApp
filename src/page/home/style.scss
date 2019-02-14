@@ -30,3 +30,20 @@
 .am-navbar-title{
     font-size: 20px;
 }
+
+.tabBar{
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    color: #fff;
+    overflow: hidden;
+    background: -webkit-linear-gradient(left, #fe419e, #ff2a62);
+    .tabs{
+        width: auto;
+        height: 44px;
+        line-height: 44px;
+        padding: 0 12px;
+        float: left;
+        color: #fff;
+    }
+}

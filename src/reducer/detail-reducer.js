@@ -3,8 +3,7 @@
 
 //初始化仓库
 const defaultState = {
-    goodslist: [],
-    step: 0
+    
 }
 
 //创建reducer
