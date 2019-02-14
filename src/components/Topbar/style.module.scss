@@ -1,0 +1,65 @@
+.Header {
+    height: 46px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+    background-color: #f35;
+    padding: 3px 0;
+    box-sizing: border-box;
+
+    .left {
+        color: #fff;
+        border-color: #fff;
+        position: absolute;
+        top: 14px;
+        display: block;
+        font-size: 14px;
+        line-height: 21px;
+        left: 18px;
+
+        .leftArrow {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            top: -5px;
+            left: -5px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                border: 1px solid #fff;
+                border-width: 1px 0 0 1px;
+
+                transform: rotate(315deg);
+                top: 8px;
+                left: 7px;
+            }
+        }
+    }
+
+    .headerTitle {
+        line-height: 40px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 400;
+        height: 40px;
+        width: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: 0 60px;
+        color: #fff;
+    }
+    .right{
+        font-size: 15px;
+        color:#fff;
+        position: absolute;
+        top: 14px;
+        right:15px;
+        display: block;
+        line-height: 21px;
+    }
+}

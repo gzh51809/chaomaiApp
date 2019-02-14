@@ -78,7 +78,7 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 goodslist: state.goodslist.map(item => {
                     if (item.id === payload.id) {
-                        item.product.filter(it => {
+                        item.product=item.product.filter(it => {
                             return it.id !== payload.uid
                         })
                     }
@@ -88,7 +88,11 @@ const reducer = (state = defaultState, action) => {
         case CHANGE_OPEN:
             return {
                 ...state,
-                open: !state.open
+                open: !state.open,
+                goodslist:state.goodslist.map(item=>{
+                    item.product.map(it=>it.open=!state.open)
+                    return item;
+                })
             }
 
         default:

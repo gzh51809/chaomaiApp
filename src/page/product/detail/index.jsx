@@ -319,7 +319,8 @@ class Detail extends Component {
                                         qty: number, 
                                         id: productInfo.category_id, 
                                         name: productInfo.product_name, 
-                                        price: productInfo.sell_price 
+                                        price: productInfo.sell_price,
+                                        open:false
                                     }] 
                                 })}>
                                 <div className="flex-item btn btn-cart">加入购物车</div>
