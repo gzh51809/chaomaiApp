@@ -6,7 +6,7 @@ class Login extends Component {
     render() {
         return (
             <div className={style.contain}>
-                <TopBar title='登陆' handleBack={() => { this.props.history.goBack()}}/>
+                <TopBar title='登陆' handleBack={() => { this.props.history.push('/')}}/>
                 <div className={style.login}>
                     <div className={style.cell}>
                         <div className={style.logininput}>

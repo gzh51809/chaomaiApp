@@ -17,7 +17,7 @@ class Home extends Component{
     }
     componentWillMount(){
         //请求Tabs的数据
-        axios.post('basic/category/Lists')
+        axios.post('api/v1/basic/category/Lists')
         .then(res=>{
             let {data} =res.data;
             data.unshift({ category_id: 0, category_name: "首页"})

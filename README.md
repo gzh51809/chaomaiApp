@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 超买网APP
+## 作者：卢俊洪
 
-## Available Scripts
+## 项目架构
 
-In the project directory, you can run:
+>开发IDE：VScode
 
-### `npm start`
+>前端开发：React框架 + Redux框架 + antd-mobile框架 + webpack + ECMAScript6 + scss
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+>后端开发：
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+>（NodeJS）使用11.1.0（ECMAScript6） + mongodb4.0.4
 
-### `npm test`
+## 项目演示地址
+>上线地址：http://120.78.4.239:3001
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 项目进度流程
+>首页: 完成
+>列表页:通过首页右上方可以进入列表页,但是不能点击进入具体的列表页
+>详情页：完成
+>购物车：可以增加数量，全选，删除未完成
+>登陆注册：完成静态页面
+>后端接口：待完成
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### 项目目录结构
+```
+.
+├── README.md
+├── package-lock.json
+├── package.json
+├── src
+│   ├── App.jsx                 APP container
+│   ├── App.css                 APP组件样式
+│   ├── index.jsx               入口js
+│   ├── components              全局组件
+│   ├── store                   redux创建的store
+│   ├── reducer                 redux的reducer
+│   ├── action                  redux的action
+│   ├── statics                 静态资源
+│   ├── page                    各页面
+│   ├── router                  导航路由
+│   └── server                  后端接口配置
+├── config                      webpack配置文件
+├── public                      模板入口
+└── script                      
+                    
+```

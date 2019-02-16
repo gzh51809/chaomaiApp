@@ -32,7 +32,7 @@ class category extends Component {
         let formData = new FormData();
         formData.append('category_id', id);
         formData.append('device', device);
-        axios.post('basic/category/lists', formData)
+        axios.post('api/v1/basic/category/lists', formData)
             .then(res => {
                 let { data } = res.data
                 this.setState({
@@ -57,7 +57,7 @@ class category extends Component {
     componentWillMount() {
         let Form = new FormData();
         Form.append('device', 'mobile')
-        axios.post('basic/category/lists', Form)
+        axios.post('api/v1/basic/category/lists', Form)
             .then(res => {
                 let { data } = res.data;
                 this.setState({
@@ -67,7 +67,7 @@ class category extends Component {
         let newForm = new FormData();
         newForm.append('device', 'mobile')
         newForm.append('category_id', 1)
-        axios.post('basic/category/lists', newForm)
+        axios.post('api/v1/basic/category/lists', newForm)
             .then(res => {
                 let { data } = res.data;
                 this.setState({

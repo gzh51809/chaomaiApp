@@ -8,7 +8,7 @@ class HomeListWrap extends Component {
   componentWillMount() {
     let formData = new FormData();
     formData.append("device", 'mobile');
-    axios.post('basic/product/RecommendLists', formData)
+    axios.post('api/v1/basic/product/RecommendLists', formData)
       .then(res => {
         let { data } = res.data;
         this.setState({

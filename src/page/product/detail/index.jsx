@@ -76,7 +76,7 @@ class Detail extends Component {
         let data = new FormData();
         data.append('id', params.id);
         data.append('device', 'mobile');
-        axios.post('supply/product/GetProductDetail', data)
+        axios.post('api/v1/supply/product/GetProductDetail', data)
             .then(res => {
                 this.setState({
                     allData: res.data.data,
@@ -90,7 +90,7 @@ class Detail extends Component {
         let desc = new FormData();
         desc.append('product_id', params.id);
         desc.append('device', 'mobile');
-        axios.post('basic/product/Desc', desc)
+        axios.post('api/v1/basic/product/Desc', desc)
             .then(res => {
                 let { desc } = res.data.data;
                 this.setState({

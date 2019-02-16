@@ -28,7 +28,7 @@ class HomeListContent extends Component{
         formData.append("device", 'mobile'); 
 
         //发送请求
-        axios.post('basic/product/Lists', formData)
+        axios.post('api/v1/basic/product/Lists', formData)
         .then((res)=>{
             let {data} =res.data;
             this.setState({

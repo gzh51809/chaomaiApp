@@ -32,10 +32,12 @@
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
+    "http-proxy-middleware": "^0.19.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
+    "mddir": "^1.1.1",
     "mini-css-extract-plugin": "0.4.3",
     "mongoose": "^5.4.12",
     "optimize-css-assets-webpack-plugin": "5.0.1",
@@ -137,5 +139,5 @@
     "redux-devtools-extension": "^2.13.7",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "https://www.slmcjms.com/api/v1/"
+  "proxy": "https://www.slmcjms.com"
 }
